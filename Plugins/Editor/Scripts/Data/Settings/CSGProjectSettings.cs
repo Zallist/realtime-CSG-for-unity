@@ -15,6 +15,13 @@ namespace RealtimeCSG
         public bool SaveMeshesInSceneFiles = true;
         public bool SnapEverythingTo0001Grid = true;
 
+        public Material OverrideWallMaterial = null;
+        public Material OverrideMetalMaterial = null;
+        public Material OverrideWindowMaterial = null;
+        public Material OverrideFloorMaterial = null;
+
+        public PhysicMaterial OverrideDefaultPhysicsMaterial = null;
+
         CSGProjectSettings()
         {
             s_Instance = this;

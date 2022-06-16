@@ -74,6 +74,16 @@ namespace RealtimeCSG
                     "If enabled, every CSG object will snap to a small grid regardless of snapping options. " +
                     "This ensures things line up when on a tiny scale, but can make it difficult to work at a small scale.",
                     MessageType.Info, true);
+
+                EditorGUILayout.Separator();
+
+                GUILayout.Label("CSG Runtime material overrides (advanced)", EditorStyles.boldLabel);
+
+                CSGProjectSettings.Instance.OverrideWallMaterial = EditorGUILayout.ObjectField("Override Wall Material", CSGProjectSettings.Instance.OverrideWallMaterial, typeof(Material), allowSceneObjects: false) as Material;
+                CSGProjectSettings.Instance.OverrideWindowMaterial = EditorGUILayout.ObjectField("Override Window Material", CSGProjectSettings.Instance.OverrideWindowMaterial, typeof(Material), allowSceneObjects: false) as Material;
+                CSGProjectSettings.Instance.OverrideMetalMaterial = EditorGUILayout.ObjectField("Override Metal Material", CSGProjectSettings.Instance.OverrideMetalMaterial, typeof(Material), allowSceneObjects: false) as Material;
+                CSGProjectSettings.Instance.OverrideFloorMaterial = EditorGUILayout.ObjectField("Override Floor Material", CSGProjectSettings.Instance.OverrideFloorMaterial, typeof(Material), allowSceneObjects: false) as Material;
+                CSGProjectSettings.Instance.OverrideDefaultPhysicsMaterial = EditorGUILayout.ObjectField("Override Default Physics Material", CSGProjectSettings.Instance.OverrideDefaultPhysicsMaterial, typeof(PhysicMaterial), allowSceneObjects: false) as PhysicMaterial;
             }
 
             if (EditorGUI.EndChangeCheck())

@@ -264,16 +264,40 @@ namespace RealtimeCSG
 
         internal static Material GetRuntimeMaterial( string materialName )
         {
-            GenerateBuiltinPipelineMaterial( WallMaterialName );
-            GenerateBuiltinPipelineMaterial( FloorMaterialName );
-            GenerateBuiltinPipelineMaterial( WindowMaterialName );
-            GenerateBuiltinPipelineMaterial( MetalMaterialName );
+			switch (materialName)
+			{ 
+				case FloorMaterialName:
+					if (RealtimeCSG.CSGProjectSettings.Instance.OverrideFloorMaterial != null)
+						return RealtimeCSG.CSGProjectSettings.Instance.OverrideFloorMaterial;
+					break;
+				case WindowMaterialName:
+					if (RealtimeCSG.CSGProjectSettings.Instance.OverrideWindowMaterial != null)
+						return RealtimeCSG.CSGProjectSettings.Instance.OverrideWindowMaterial;
+					break;
+				case MetalMaterialName:
+					if (RealtimeCSG.CSGProjectSettings.Instance.OverrideMetalMaterial != null)
+						return RealtimeCSG.CSGProjectSettings.Instance.OverrideMetalMaterial;
+					break;
+				case WallMaterialName:
+					if (RealtimeCSG.CSGProjectSettings.Instance.OverrideWallMaterial != null)
+						return RealtimeCSG.CSGProjectSettings.Instance.OverrideWallMaterial;
+					break;
+			}
 
-            return Resources.Load<Material>( string.Format( "RealtimeCSG/Materials/{0}", materialName ) );
-        }
+			GenerateBuiltinPipelineMaterial(materialName);
+			return Resources.Load<Material>(string.Format("RealtimeCSG/Materials/{0}", materialName));
+		}
 
         internal static PhysicMaterial GetRuntimePhysicMaterial(string materialName)
         {
+			switch (materialName)
+            {
+				case "Default":
+					if (RealtimeCSG.CSGProjectSettings.Instance.OverrideDefaultPhysicsMaterial != null)
+						return RealtimeCSG.CSGProjectSettings.Instance.OverrideDefaultPhysicsMaterial;
+					break;
+            }
+
             return Resources.Load<PhysicMaterial>( string.Format( "RealtimeCSG/Materials/{0}", materialName ) );
         }
 
