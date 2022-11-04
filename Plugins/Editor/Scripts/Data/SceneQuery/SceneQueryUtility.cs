@@ -104,9 +104,9 @@ namespace InternalRealtimeCSG
 				for (int j = 0; j < rootChildren.Length; j++)
 				{
 					var child = rootChildren[j];
-					if (child == root)
-						continue;
 					if (!child)
+						continue;
+					if (child == root || child.gameObject == root) // if gameObject == root then don't destroy it
 						continue;
 
 					if (child.hideFlags == HideFlags.None ||
